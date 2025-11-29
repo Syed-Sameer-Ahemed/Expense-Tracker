@@ -1,0 +1,26 @@
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Note</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for e in expenses %}
+    <tr>
+        <td>{{ e.date }}</td>
+        <td>{{ e.category.name }}</td>
+        <td>{{ e.amount }}</td>
+        <td>{{ e.note }}</td>
+        <td>
+            <a href="{% url 'expenses:edit' e.id %}">Edit</a> |
+            <a href="{% url 'expenses:delete' e.id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">No expenses added yet.</td>
+    </tr>
+    {% endfor %}
+</table>
